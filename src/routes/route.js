@@ -1,33 +1,52 @@
 const express = require('express');
-const logger = require('./logger')
+const res = require('express/lib/response');
+
 
 const router = express.Router();
+const arr =['fandry','sairat','duniyadari','pk','lagaan','kgf']
+router.get('/movies', function (req, res) { 
+  
 
-router.get('/test-me', function (req, res) {
-    console.log('I am inside the first route handler')
-    console.log('The endpoint value is', logger.endpoint)
-    console.log('Calling log function')
-    logger.logging()
-    res.send('My first ever api!')
+    res.send(arr)
 });
 
-router.get('/test-me2', function (req, res) {
-    console.log('I am inside the second route handler')
-    res.send('My second ever api!')
-});
+//no.2
+ router.get('/movies/:indexNumber', function (req, res) {
+     const a= req.params.indexNumber
+     if(a<arr.length && a>=0){
+     res.send(arr[a])
+     }
+     else{
+         res.send('no valid index')
+     }
+ });
 
+ const arr2 =[ {
+    'id': 1,
+    'name': 'The Shining'
+   }, {
+    'id': 2,
+    'name': 'Incendies'
+   }, {
+    'id': 3,
+    'name': 'Rang de Basanti'
+   }, {
+    'id': 4,
+    'name': 'Finding Nemo'
+   }]
+   router.get('/films', function (req, res) { 
+res.send(arr2)
+   });
 
-router.get('/test-me5', function (req, res) {
-    res.send('My final ever api!')
-});
-
-router.get('/test-me3', function (req, res) {
-    res.send('My first ever api!')
-});
-
-router.get('/test-me4', function (req, res) {
-    res.send('My first ever api!')
-});
-
-module.exports = router;
+   router.get('/films/:filmsId', function (req, res) { 
+    const c = req.params.filmsId
+    if(c<arr2.length && c>=0)
+{
+  res.send(arr2[c])
+}
+else{
+    res.send('no such id')
+}
+   });
+ module.exports = router;
 // adding this comment for no reason
