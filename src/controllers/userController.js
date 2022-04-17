@@ -11,5 +11,8 @@ const getUsersData= async function (req, res) {
     res.send({msg: allUsers})
 }
 
+//  For Assignment-day 16 11/04 
+
+
 module.exports.createUser= createUser
 module.exports.getUsersData= getUsersData
