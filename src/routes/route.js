@@ -1,46 +1,56 @@
 const express = require('express');
-
+const lodash = require('lodash')
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    // let a = { msg: "My first ever API response in JSON !!"} 
-
-
-    res.send( { msg: "My first ever API response in JSON !!"} )
-});
-
-
-
-router.get('/test-api1', function (req, res) {
-
-    res.send( "hi FunctionUp " )
-});
-
-
-router.get('/test-api2', function (req, res) {
-
-    res.send( { msg: "Hi FUnctionUp..again !"} )
-});
-
-
-router.get('/test-api3', function (req, res) {
-
-    res.send( { msg: "Hi FUnctionUp..again..this is another similar api !"} )
-});
-
-
-router.get('/test-api4', function (req, res) {
-
-    res.send( { msg: "Hi FUnctionUp..again..this is another similar api ..not I am getting bored!"} )
-});
-
-
-router.get('/test-api5', function (req, res) {
-
-    res.send( { msg: "Hi FUnctionUp" , name:"FunctionUp", age: "100"} )
-});
-
-
+let players =
+   [
+       {
+           "name": "manish",
+           "dob": "1/1/1995",
+           "gender": "male",
+           "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",
+           "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ],
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ],
+       },
+   ]
+ 
+   router.post('/players', function (req, res) {
+    let pay = req.body.name
+    for (let i = 0;i<players.length;i++){
+        if(players[i].name === pay){
+         res.send({msg : "This player already exists"})
+         return
+        }
+    }
+       
+        
+          players.push(req.body)
+           res.send(players);
+        //   res.send(players);
+          
+      
+       
+   });
+  
 
 router.get('/test-api6', function (req, res) {
 
